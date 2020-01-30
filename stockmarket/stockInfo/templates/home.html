@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<h1>This is the home page</h1>
+
+{% if api %}
+    {% if api == "Error..." %}
+        There is a Error, Please try again...
+
+    {% else %}
+        <h1>Company Name : {{ api.companyName }}</h1><br><br>
+        <h3>Latest Price : {{ api.latestPrice }}</h3><br>
+        <h3>Previous Close : {{ api.previousClose }}</h3><br>
+        <h3>Market Capital : {{ api.marketCap }}</h3><br>
+        <h3>Year To Date Change : {{ api.ytdChange }}</h3><br>
+        <h3>52 Week High : {{ api.week52High }}</h3><br>
+        <h3>52 Week Low : {{ api.week52Low }}</h3><br>
+        <br>
+        <br>
+        <h3>More Info </h3>
+        {% for key,value in api.items %}
+            {{ key }}:{{ value }} 
+            <br>
+        {% endfor %}
+    {% endif %}
+
+{% endif %}
 
 {% endblock %}
